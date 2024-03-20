@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
-    <apikit:config name="books-system-api-config" api="resource::2fdf0f92-7894-4d64-934e-2c509ced85d5:books-system-api:1.0.0:raml:zip:books-system-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <apikit:config name="books-system-api-config" api="resource::2fdf0f92-7894-4d64-934e-2c509ced85d5:books-system-api:1.0.1:raml:zip:books-system-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="books-system-api-main">
         <http:listener path="/api/*" config-ref="HTTP_Listener_config">
             <http:response statusCode="#[vars.httpStatus default 200]">
@@ -121,9 +121,12 @@ output application/json
         </error-handler>
     </flow>
     <flow name="get:\books:books-system-api-config">
-		<flow-ref doc:name="Flow Reference" doc:id="68818e5d-0ed5-464a-a467-db668c7f3f4d" name="getBooksFlow"/>
+        <flow-ref doc:name="Flow Reference" doc:id="68818e5d-0ed5-464a-a467-db668c7f3f4d" name="getBooksFlow" />
     </flow>
     <flow name="get:\health:books-system-api-config">
-		<flow-ref doc:name="Flow Reference" doc:id="45eac4b3-e76c-4a46-87e1-2752fc55c1b2" name="healthFlow" />
+        <flow-ref doc:name="Flow Reference" doc:id="45eac4b3-e76c-4a46-87e1-2752fc55c1b2" name="healthFlow" />
+    </flow>
+    <flow name="post:\search:application\json:books-system-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="6d4d41f3-0676-4e4e-aa16-5858f3b4cf83" name="searchBooksFlow"/>
     </flow>
 </mule>

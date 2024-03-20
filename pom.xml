@@ -4,7 +4,7 @@
 
 	<groupId>2fdf0f92-7894-4d64-934e-2c509ced85d5</groupId>
 	<artifactId>books-sapi</artifactId>
-	<version>1.1.4</version>
+	<version>1.1.5</version>
 	<packaging>mule-application</packaging>
 
 	<name>books-sapi</name>
@@ -106,13 +106,6 @@
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
-			<groupId>2fdf0f92-7894-4d64-934e-2c509ced85d5</groupId>
-			<artifactId>books-system-api</artifactId>
-			<version>1.0.0</version>
-			<classifier>raml</classifier>
-			<type>zip</type>
-		</dependency>
-		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.9.2</version>
@@ -134,6 +127,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.30</version>
+		</dependency>
+		<dependency>
+			<groupId>2fdf0f92-7894-4d64-934e-2c509ced85d5</groupId>
+			<artifactId>books-system-api</artifactId>
+			<version>1.0.1</version>
+			<classifier>raml</classifier>
+			<type>zip</type>
 		</dependency>
 	</dependencies>
 
