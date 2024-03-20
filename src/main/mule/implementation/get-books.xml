@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:java="http://www.mulesoft.org/schema/mule/java"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="getBooksFlow" doc:id="4b56d7fb-eaf6-40ab-a6a2-6a3d2d719296" >
+		<db:select doc:name="Select" doc:id="848e680e-eb39-4a03-b7fb-d7ba14496c97" config-ref="Database_Config">
+			<db:sql ><![CDATA[SELECT * FROM BOOK]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="7b20d594-802a-4f30-a4d2-cafd2eecdedf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	author: payload01.author default "",
+	price: payload01.price default 0,
+	ID: payload01.ID,
+	title: payload01.title default ""
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="7fe31159-cdc5-4587-afac-d158630dec39" />
+	</flow>
+</mule>
