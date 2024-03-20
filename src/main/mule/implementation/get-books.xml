@@ -7,9 +7,12 @@ http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/jav
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
 	<flow name="getBooksFlow" doc:id="4b56d7fb-eaf6-40ab-a6a2-6a3d2d719296" >
+		<set-payload value='#[{&#10;	"title": "Al Muquadimah",&#10;	"author": "IBN Arafa",&#10;	"price": "30",&#10;	&#10;}]' doc:name="Set Payload" doc:id="46638450-549a-4463-8dbf-548a4932c3b3" />
 		<db:select doc:name="Select" doc:id="848e680e-eb39-4a03-b7fb-d7ba14496c97" config-ref="Database_Config">
 			<db:sql ><![CDATA[SELECT * FROM BOOK]]></db:sql>
-		</db:select>
+			<db:input-parameters ><![CDATA[#[{'title': payload.title, 'author': payload.author, 'price': payload.price}]]]></db:input-parameters>
+		
+</db:select>
 		<ee:transform doc:name="Transform Message" doc:id="7b20d594-802a-4f30-a4d2-cafd2eecdedf" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
