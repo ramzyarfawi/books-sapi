@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 	<global-property doc:name="Global Property" doc:id="3f72cf3a-92a0-4bf6-b8e3-1590c3d8cda3" name="env" value="local" />
 	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="69b6eda3-9f7b-4d70-a8cc-1ec7382d5dd0" flowRef="books-system-api-main" />
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="33ace5bf-6897-4e59-a720-5eaaff128580" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-connection host="0.0.0.0" port="${listener.port}" />
 	</http:listener-config>
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="b56b0a96-4367-468a-8d04-dc8b63c24d7b" >
 		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${db.user}" password="${db.password}" database="${db.schema}"/>
